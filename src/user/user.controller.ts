@@ -1,6 +1,6 @@
 import {
   Controller,
-  Get,
+  // Get,
   Post,
   Body,
   UsePipes,
@@ -17,10 +17,5 @@ export class UserController {
   @UsePipes(new ValidationPipe())
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
-  }
-
-  @Get(':id')
-  findAll() {
-    return this.userService.findOne(1);
   }
 }
