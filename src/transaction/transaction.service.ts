@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
-// import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Transaction } from './entities/transaction.entity';
@@ -76,5 +75,15 @@ export class TransactionService {
       skip: (page - 1) * limit,
     });
     return transactions;
+  }
+  async findAllBytype(id: number, type: string) {
+    const transactions = await this.transactionRepository.find({
+      where: { user: { id }, type },
+    });
+    const total = transactions.reduce(
+      (acc, transaction) => acc + transaction.amount,
+      0,
+    );
+    return total;
   }
 }
