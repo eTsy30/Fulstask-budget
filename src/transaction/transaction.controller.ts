@@ -32,8 +32,6 @@ export class TransactionController {
   @UseGuards(JwtAuthGuard)
   // @UsePipes(new ValidationPipe()) //TODO разобраться почему не рабоьает
   create(@Body() createTransactionDto: CreateTransactionDto, @Req() req) {
-    console.log(createTransactionDto, req.user.id);
-
     return this.transactionService.create(createTransactionDto, +req.user.id);
   }
   @Get(':type/find')

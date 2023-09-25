@@ -66,6 +66,7 @@ export class CategoryService {
 
   async remove(id: number) {
     const category = await this.categoryRepositiry.findOne({ where: { id } });
+
     if (!category) {
       throw new NotFoundException('Category not found');
     }

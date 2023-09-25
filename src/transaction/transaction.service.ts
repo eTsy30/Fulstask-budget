@@ -29,6 +29,7 @@ export class TransactionService {
   async findAll(id: number) {
     const transactionsAll = await this.transactionRepository.find({
       where: { user: { id: id } },
+      relations: { category: true },
       order: { createAt: 'DESC' }, //сортировка новые вначале
     });
     return transactionsAll;
