@@ -14,7 +14,7 @@ import {
 import { TransactionService } from './transaction.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
-import { AuthorGuard } from 'src/guard/autor.guard';
+import { AuthorGuard } from '../guard/autor.guard';
 
 @Controller('transaction')
 export class TransactionController {
