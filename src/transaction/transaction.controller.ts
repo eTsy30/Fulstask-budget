@@ -14,7 +14,7 @@ import {
 import { TransactionService } from './transaction.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
-import { AuthorGuard } from 'src/guard/autor.guard';
+// import { AuthorGuard } from 'src/guard/autor.guard';
 
 @Controller('transaction')
 export class TransactionController {
@@ -47,13 +47,13 @@ export class TransactionController {
   }
 
   @Get(':type/:id')
-  @UseGuards(JwtAuthGuard, AuthorGuard)
+  @UseGuards(JwtAuthGuard) //AuthorGuard
   findOne(@Param('id') id: string) {
     return this.transactionService.findOne(+id);
   }
 
   @Patch(':type/:id')
-  @UseGuards(JwtAuthGuard, AuthorGuard)
+  @UseGuards(JwtAuthGuard) //AuthorGuard
   update(
     @Param('id') id: string,
     @Body() updateTransactionDto: UpdateTransactionDto,
@@ -62,7 +62,7 @@ export class TransactionController {
   }
 
   @Delete(':type/:id')
-  @UseGuards(JwtAuthGuard, AuthorGuard)
+  @UseGuards(JwtAuthGuard) //AuthorGuard
   remove(@Param('id') id: string) {
     return this.transactionService.remove(+id);
   }
