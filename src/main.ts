@@ -15,7 +15,7 @@ async function bootstrap() {
   //     },
   //   }),
   // );
-  await app.listen('https://fulstask-budget.vercel.app' || 4545);
+  await app.listen(4545);
   console.log('Server started');
 }
 bootstrap();
