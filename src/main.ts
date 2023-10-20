@@ -9,7 +9,7 @@ async function bootstrap() {
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"], // Разрешить только загрузку с текущего источника
-        scriptSrc: ["'self'", 'https://client-swart-sigma-79.vercel.app'], // Разрешить загрузку скриптов только с вашего фронтенда
+        scriptSrc: ["'self'", 'https://client-budget.vercel.app'], // Разрешить загрузку скриптов только с вашего фронтенда
         // Другие директивы по необходимости
       },
     }),
