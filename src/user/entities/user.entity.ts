@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { PiggyBank } from 'src/piggy-bank/entities/piggy-bank.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -29,6 +30,10 @@ export class User {
   })
   transactions: Transaction[];
 
+  @OneToMany(() => PiggyBank, (piggyBank) => piggyBank.user, {
+    onDelete: 'CASCADE',
+  })
+  bank: PiggyBank[];
   @CreateDateColumn()
   createAt: Date;
 
