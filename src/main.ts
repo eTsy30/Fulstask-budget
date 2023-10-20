@@ -13,7 +13,7 @@ async function bootstrap() {
       credentials: true, // Если вы используете сессии или аутентификацию
     }),
   );
-  await app.listen(4545);
+  await app.listen('https://fulstask-budget.vercel.app');
   console.log('Server started');
 }
 bootstrap();
