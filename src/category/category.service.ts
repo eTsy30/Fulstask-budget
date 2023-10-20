@@ -5,7 +5,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
-// import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Repository } from 'typeorm';
 import { Category } from './entities/category.entity';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -13,15 +12,26 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 @Injectable()
 export class CategoryService {
   constructor(
-    @InjectRepository(Category) //добавляем репоситориЙ Category
+    @InjectRepository(Category)
     private readonly categoryRepositiry: Repository<Category>,
   ) {}
   async create(createCategoryDto: CreateCategoryDto, id: number) {
     const isExist = await this.categoryRepositiry.findBy({
-      // проверяем есть ли у конкретного юзера id которого мы передали title которыЙ мы передали в createCategoryDto
-      user: { id: id }, //TODO обьяснить1
+      user: { id: id },
       title: createCategoryDto.title,
     });
+    const dreamCategory = await this.categoryRepositiry.findBy({
+      user: { id: id },
+      title: 'Dream',
+    });
+    if (dreamCategory.length === 0) {
+      // Если категория "dream" не существует, создаем ее
+      const newDreamCategory = {
+        title: 'Dream',
+        user: { id: id },
+      };
+      await this.categoryRepositiry.save(newDreamCategory);
+    }
     if (isExist.length) {
       throw new BadGatewayException('This category alredy exist');
     }
@@ -34,7 +44,6 @@ export class CategoryService {
 
   async findAll(id: number) {
     return await this.categoryRepositiry.find({
-      //TODO обьяснить
       where: { user: { id: id } },
       relations: {
         transaction: true,
