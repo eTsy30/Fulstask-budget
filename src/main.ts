@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const allowedOrigins = [
     'http://localhost:5173',
-    'https://fulstask-budget.vercel.app',
+    'https://client-budget.vercel.app',
   ];
 
   app.use((req, res, next) => {
