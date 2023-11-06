@@ -17,12 +17,13 @@ async function bootstrap() {
         callback(new Error('Not allowed by CORS'));
       }
     },
+
     methods: 'GET, POST, PUT, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true, // Разрешить куки
   });
 
   await app.listen(4545);
-  console.log('Server started');
+  console.log('Server start');
 }
 bootstrap();
