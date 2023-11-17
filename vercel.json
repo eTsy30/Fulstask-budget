@@ -1,31 +1,6 @@
 {
   "version": 2,
-  "env": {
-    "POSTGRES_URL": "postgres://default:qe1shboj5GPJ@ep-flat-cake-27697752-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb"
-  },
-  "builds": [
-    {
-      "src": "src/main.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "src/main.ts",
-      "methods": ["GET", "POST", "PUT", "DELETE"],
-      "headers": {
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-        "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-      }
-    }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs14.x",
-      "memory": 512
-    }
-  }
+
+  "builds": [{ "src": "src/main.ts", "use": "@vercel/node" }],
+  "routes": [{ "src": "/api/(.*)", "dest": "src/main.ts" }]
 }
