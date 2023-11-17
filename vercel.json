@@ -1,7 +1,7 @@
 {
   "version": 2,
   "env": {
-    "POSTGRES_URL": "postgres://default:qe1shboj5GPJ@ep-flat-cake-27697752-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+    "POSTGRES_URL": "postgres://default:qe1shboj5GPJ@ep-flat-cake-27697752.us-east-1.postgres.vercel-storage.com:5432/verceldb"
   },
   "builds": [
     {
@@ -12,13 +12,8 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/main.ts"
+      "dest": "src/main.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
     }
-  ],
-  "functions": {
-    "/**/*.ts": {
-      "runtime": "nodejs14.x",
-      "memory": 512
-    }
-  }
+  ]
 }
